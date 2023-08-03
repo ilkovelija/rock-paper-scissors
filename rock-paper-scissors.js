@@ -18,39 +18,56 @@ computerSelection = getComputerChoice().toLowerCase();
 
 //console.log(`Computer chose ${computerSelection}`);
 
-playerSelection = prompt(`Please choose rock, paper or scissors!`).toLowerCase();
+function getPlayerSelection() {
+  playerSelection = prompt(`Please choose rock, paper or scissors!`).toLowerCase()
+  console.log(`You chose ${playerSelection}`);
+}
 
-console.log(`You chose ${playerSelection}`);
+getPlayerSelection();
 
-function play(computerSelection, playerSelection) {
+
+
+const tie = "tie";
+const win = "win";
+const lose = "lose";
+
+
+function playRound(computerSelection, playerSelection) {
   if (computerSelection == playerSelection) {
     console.log(`Computer chose ${computerSelection}`);
     console.log(`You have tied!`);
+    return tie;
   }
   else if (computerSelection === "rock" && playerSelection === "scissors") {
     console.log(`Computer chose ${computerSelection}`);
     console.log(`You have lost!`);
+    return lose;
   }
   else if (computerSelection === "rock" && playerSelection === "paper") {
     console.log(`Computer chose ${computerSelection}`);
     console.log(`You have won!`);
+    return win;
   }
   else if (computerSelection === "scissors" && playerSelection === "rock") {
     console.log(`Computer chose ${computerSelection}`);
     console.log(`You have won!`);
+    return win;
   }
   else if (computerSelection === "scissors" && playerSelection === "paper") {
     console.log(`Computer chose ${computerSelection}`);
     console.log(`You have lost!`);
+    return lose;
   }
   else if (computerSelection === "paper" && playerSelection === "scissors") {
     console.log(`Computer chose ${computerSelection}`);
     console.log(`You have won!`);
+    return win;
 
   }
   else if (computerSelection === "paper" && playerSelection === "rock") {
     console.log(`Computer chose ${computerSelection}`);
     console.log(`You have lost!`);
+    return lose;
 
   }
   else {
@@ -60,7 +77,17 @@ function play(computerSelection, playerSelection) {
 }
 
 
-play(computerSelection, playerSelection);
+console.log(playRound(computerSelection, playerSelection));
+
+function game() {
+  for (let i = 0; i < 4; i++) {
+    getPlayerSelection();
+    getComputerChoice();
+    playRound(computerSelection, playerSelection);
+  }
+}
+
+game();
 
 
 
